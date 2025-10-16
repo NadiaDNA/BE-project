@@ -10,18 +10,14 @@ getAllUser: async (req, res) => {
         res.status(500).json({message: "Internal Server Error", error: error.message });
     }
 },
-getUserById: (req, res) => {
+getUserById: async(req, res) => {
     try {
         const { id } = req.params;
-        User.findById(id, (err, user) => {
-            if (err) {
-                return res.status(500).json({message: "Internal Server Error", error: err.message });
-            }
+        const user = await  User.findById(id)
             if (!user) {
                 return res.status(404).json({message: "User not found"});
             }
-            res.status(200).json(user);
-        });
+            res.status(200).json({ message: "Get user successfully", data: user });
     } catch (error) {
         res.status(500).json({message: "Internal Server Error", error: error.message });
     }
