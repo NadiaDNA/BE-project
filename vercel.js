@@ -14,6 +14,6 @@ module.exports = {
     { src: "app.js", use: "@vercel/node" }
   ],
   routes: [
-    { src: "/(.*)", dest: "/app.js" }
+    { src: "/(.*)", dest: "app.js" }
   ]
 }
